@@ -1,10 +1,10 @@
 from django.urls import path
-#from . import views
-from .views import HomeView, ReportDetail
+from . import views
+from .views import HomeView, AddReport, DeleteReport
 
 urlpatterns = [
-    #path('',views.home, name= 'home'),
     path('', HomeView.as_view(), name='home'),
-    path('report/<int:pk>', ReportDetail.as_view(), name='details'), #primary key
-
+    path('exit/', views.exit, name='exit'),
+    path('add_report/', AddReport.as_view(), name = 'add_report'),
+    path('delete_report/', DeleteReport.as_view(), name = 'delete_report'),
 ]

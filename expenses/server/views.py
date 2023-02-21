@@ -1,14 +1,26 @@
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.shortcuts import render, redirect
+from django.views.generic import ListView, CreateView, DeleteView
 from .models import Report
+from .forms import ReportForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth import logout
 
-# def home(request):
-#     return render(request, 'home.html', {})
 
+@method_decorator(login_required, name='dispatch')
 class HomeView(ListView):
     model = Report
     template_name = 'home.html'
 
-class ReportDetail(ListView):
+class AddReport(CreateView):
     model = Report
-    template_name = 'details.html'
+    form_class = ReportForm
+    template_name = 'add_report.html'
+
+class DeleteReport(DeleteView):
+    model = Report
+    template_name = 'delete_report.html'
+
+def exit(request):
+    logout(request)
+    return redirect('/')

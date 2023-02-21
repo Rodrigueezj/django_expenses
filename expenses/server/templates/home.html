@@ -1,9 +1,17 @@
-<h1>Report</h1>
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Reports</h1>
+
+    <ul>
+    {% for report in object_list %}
 
 
-<ul>
-{% for report in object_list %}
-    <li><a href="% url 'details' report.pk %"> {{ report.title}} </a>| {{ report.author}}<br/>
-    {{ report.body}}</li>
-{% endfor%}
-</ul>
+
+
+    {{ report.body}}
+    {% endfor %}
+    </ul>
+    <a href="{% url 'exit' %}" class="btn btn-secondary" >Log out</a>
+    
+{% endblock %}
