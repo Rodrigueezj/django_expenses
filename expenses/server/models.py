@@ -25,11 +25,12 @@ class Method(models.Model):
         return self.name
 
 class Report(models.Model):
-    author = models.ForeignKey(User, on_delete=models.CASCADE)    
-    payment = models.ForeignKey(Method, on_delete=models.CASCADE)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    #author = models.ForeignKey(User, on_delete=models.CASCADE)    
     date = models.DateField(default=timezone.now)
+    account = models.ForeignKey(Account, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.CharField(max_length=10, default=0)
+    payment = models.ForeignKey(Method, on_delete=models.CASCADE)
     description = models.CharField(max_length= 50, default='')
     
     def __str__(self):

@@ -8,14 +8,33 @@ Add report
 <h1>Add Report</h1>
 <br/>
 <div>
-    <form method="post">
+    <form method="post" id="reportform" data-categories-url="{% url 'ajax_load_categories' %}">
         {% csrf_token %}
         {{ form.as_p }}
+        <input type="submit" value="Submit">
+
         <button class="btn btn-secondary">Add</button>
-    
-    
     </form>
     
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 
+    <script>
+        $("#id_account").change(function () {
+            const url = $("#reportform").attr("data-categories-url");
+            const accountId = $(this).val();
+            console.log(accountId);
+            $.ajax({
+                url: url,
+                data: {
+                    'account_id': accountId    
+                },
+                success: function (data) {
+                    
+                    $("#id_category").html(data);    
+                }
+            });
+        });
+                
+    </script>
 </div>
 
 {% endblock %}
