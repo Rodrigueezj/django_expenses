@@ -29,14 +29,15 @@ class Report(models.Model):
     date = models.DateField(default=timezone.now)
     account = models.ForeignKey(Account, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    price = models.CharField(max_length=10, default=0)
+    price = models.FloatField(default=0)
     payment = models.ForeignKey(Method, on_delete=models.CASCADE)
     description = models.CharField(max_length= 50, default='')
     
     def __str__(self):
-        return self.description + ' | ' + str(self.author)
+        return self.description + ' | ' + str(self.date)
 
     def get_absolute_url(self):
         return redirect('/')
-
-# terminar los modelos, extened user, bootstrap, llenar la base de datos, relaciones entre tablas, on delete
+    
+    class Meta:
+        ordering = ('date',)

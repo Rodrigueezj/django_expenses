@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Reports</h1>
+{{ chart|safe }}
+    <a href="{% url 'exit' %}" class="btn btn-secondary" >Log out</a>
+    
+{% endblock %}

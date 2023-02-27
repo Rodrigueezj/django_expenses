@@ -2,14 +2,13 @@
 
 {% block content %}
     <h1>Reports</h1>
-
     <ul>
     {% for report in object_list %}
 
+        <li>{{report.date}} | {{report.category}} | {{report.price}} <br/>
+            {{report.description}} </li>
+            <br/>
 
-
-
-    {{ report.body}}
     {% endfor %}
     </ul>
     <a href="{% url 'exit' %}" class="btn btn-secondary" >Log out</a>

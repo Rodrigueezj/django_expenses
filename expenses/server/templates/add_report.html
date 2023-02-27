@@ -11,8 +11,6 @@ Add report
     <form method="post" id="reportform" data-categories-url="{% url 'ajax_load_categories' %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Submit">
-
         <button class="btn btn-secondary">Add</button>
     </form>
     

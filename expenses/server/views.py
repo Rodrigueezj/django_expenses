@@ -5,12 +5,23 @@ from .forms import ReportForm
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth import logout
-from django.http import HttpRequest
+import plotly.express as px
+from django.db.models import Sum
 
-@method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch') 
 class HomeView(ListView):
     model = Report
     template_name = 'home.html'
+
+def chart(request):
+    sums = Report.objects.values('category__name').annotate(total_price=Sum('price')) #here is the error
+
+    fig = px.pie(sums, values='total_price', names='category__name')
+    print(sums)
+
+    chart = fig.to_html()
+    context = {'chart': chart}
+    return render(request, 'chart.html', context)
 
 def AddReport(request):
     form = ReportForm()
