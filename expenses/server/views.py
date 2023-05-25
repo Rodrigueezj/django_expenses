@@ -37,7 +37,7 @@ class DeleteReport(DeleteView):
     template_name = 'delete_report.html'
 
 def load_categories(request):
-    account_id = request.GET.get('account_id')#here is the problem
+    account_id = request.GET.get('account_id')
     categories = Category.objects.filter(account_id=account_id).all()
     return render(request, 'category_dropdown_list_options.html', {'categories': categories})
 
