@@ -2,7 +2,7 @@ from django.urls import path
 from . import views
 from .views import HomeView, AddReport, DeleteReport
 
-app_name = 'server'
+#app_name = 'server'
 urlpatterns = [
     path('', HomeView.as_view(), name='home'),
     path('chart/', views.chart, name='chart'),
