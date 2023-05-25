@@ -20,6 +20,7 @@ Add report
         $("#id_account").change(function () {
             const url = $("#reportform").attr("data-categories-url");
             const accountId = $(this).val();
+            console.log('este es el account id');
             console.log(accountId);
             $.ajax({
                 url: url,

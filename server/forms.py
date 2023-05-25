@@ -1,5 +1,5 @@
 from django import forms
-from .models import Report, Account
+from .models import Report, Account, Category
 from bootstrap_datepicker_plus.widgets import DatePickerInput
 
 class ReportForm(forms.ModelForm):
@@ -21,11 +21,11 @@ class ReportForm(forms.ModelForm):
         super().__init__(*args, **kargs)
 
         self.fields['category'].queryset = Account.objects.none() #hace que no salga ninguna opción en category
-        print(self.data)
+
         if 'account' in self.data:
             try:
                 account_id = int(self.data.get('account'))
-                self.fields['category'].queryset = Account.objects.filter(account_id = account_id).order_by('name')
+                self.fields['category'].queryset = Category.objects.filter(account_id = account_id).order_by('name') # ACa esta el pinche problema
             except (ValueError, TypeError):
                 pass
         elif self.instance.pk:

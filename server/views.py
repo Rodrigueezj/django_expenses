@@ -13,14 +13,14 @@ class HomeView(ListView):
     model = Report
     template_name = 'home.html'
 
-def chart(request):
+def chart_category(request):
     sums = Report.objects.values('category__name').annotate(total_price=Sum('price')) #here is the error
 
     fig = px.pie(sums, values='total_price', names='category__name')
     print(sums)
 
     chart = fig.to_html()
-    context = {'chart': chart}
+    context = {'chart_category': chart}
     return render(request, 'chart.html', context)
 
 def AddReport(request):
