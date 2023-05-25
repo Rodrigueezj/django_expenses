@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Reports</h1>
+    <h1>Hi {{user.username}}, here are your reports</h1>
     <ul>
     {% for report in object_list %}
 
@@ -11,6 +11,6 @@
 
     {% endfor %}
     </ul>
-    <a href="{% url 'exit' %}" class="btn btn-secondary" >Log out</a>
+    <a href="{% url 'logout' %}" class="btn btn-secondary" >Log out</a>
     
 {% endblock %}

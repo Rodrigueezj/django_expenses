@@ -3,6 +3,6 @@
 {% block content %}
     <h1>Reports</h1>
 {{ chart_category|safe }} <!-- aca podria hacer un condicional dependiendo del chart que quiera -->
-    <a href="{% url 'exit' %}" class="btn btn-secondary" >Log out</a>
+    <a href="{% url 'logout' %}" class="btn btn-secondary" >Log out</a>
     
 {% endblock %}
