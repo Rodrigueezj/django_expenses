@@ -8,7 +8,7 @@ class ReportForm(forms.ModelForm):
         fields = '__all__'
 
         widgets = {
-            #'author': forms.Select(attrs={'class': 'form-control'}),
+            #'profile': forms.Select(attrs={'class': 'form-control'}),
             'date': forms.DateInput(attrs={'class': 'form-control'}),
             'account': forms.Select(attrs={'class': 'form-control'}),
             'category': forms.Select(attrs={'class': 'form-control'}),
@@ -25,8 +25,9 @@ class ReportForm(forms.ModelForm):
         if 'account' in self.data:
             try:
                 account_id = int(self.data.get('account'))
-                self.fields['category'].queryset = Category.objects.filter(account_id = account_id).order_by('name') # ACa esta el pinche problema
+                self.fields['category'].queryset = Category.objects.filter(account_id = account_id).order_by('name')
             except (ValueError, TypeError):
                 pass
+
         elif self.instance.pk:
             self.fields['category'].queryset = self.instance.account.category_set.order_by('name')
