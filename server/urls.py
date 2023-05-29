@@ -9,7 +9,7 @@ from .views import add_report, DeleteReport, DetailReport, list_report, UpdateRe
 urlpatterns = [
     path('accounts/login/', LoginView.as_view(), name='login'),
     #path('', login_required(HomeView.as_view()), name='home'),
-    path('ja', login_required(views.BASE), name='BASE'),
+    path('index/', login_required(views.BASE), name='BASE'),
     path('', login_required(views.list_report), name='list_report'),
     path('add_report/', login_required(views.add_report), name = 'add_report'),
     path('edit_report/<int:pk>', login_required(UpdateReport.as_view()), name = 'update_report'),

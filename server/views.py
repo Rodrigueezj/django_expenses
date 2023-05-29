@@ -6,11 +6,6 @@ from .forms import ReportForm
 import plotly.express as px
 from django.db.models import Sum
 
-# class HomeView(ListView):
-#     model = Report
-#     template_name = 'home.html'
-#     context_object_name = 'reports'
-
 def BASE(request):
     return render(request, 'index.html')
 
