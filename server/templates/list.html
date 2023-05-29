@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Reports
+{% endblock %}
+
+{% block content %}
+    {% if reports %}
+
+    <h1>Hi {{user.username}}, here are your reports</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Date</th>
+                <th>Account</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Payment method</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports %}
+            <tr>
+                <a href="{% url 'update_report' report.id %}">
+                    <th>{{ report.id }}</th>
+                    <th>{{ report.date }}</th>
+                </a>
+                <th>{{ report.account }}</th>
+                <th>{{ report.category }}</th>
+                <th>{{ report.price }}</th>
+                <th>{{ report.payment }}</th>
+                <th>{{ report.description }}</th>
+            </tr>   
+            {% endfor %}
+            </tbody>
+    </table>
+    {% else %}
+        <h1>There are no reports</h1>
+    {% endif %}
+    <a href="{% url 'logout' %}" class="btn btn-secondary" >Log out</a>
+    
+{% endblock %}

@@ -5,17 +5,7 @@
     <h1>Login required</h1>
     <form method="post">
         {% csrf_token %}
-          
-        <label for="user">
-            user
-            <input type="text" name="username">
-        </label>
-        <br/>
-        <label for="pass">
-            password
-            <input type="password" name="password">
-        </label>
-        <br/>
+        {{ form.as_p }}
         <button type="submit" class="btn btn-secondary">Login</button>
     </form>
 
