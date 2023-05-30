@@ -7,7 +7,8 @@ import plotly.express as px
 from django.db.models import Sum
 
 def BASE(request):
-    return render(request, 'index.html')
+    reports = Report.objects.all()
+    return render(request, 'index.html', {'reports': reports})
 
 def list_report(request):
     reports = Report.objects.all()

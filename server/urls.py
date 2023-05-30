@@ -8,11 +8,10 @@ from .views import add_report, DeleteReport, DetailReport, list_report, UpdateRe
 #app_name = 'server'
 urlpatterns = [
     path('accounts/login/', LoginView.as_view(), name='login'),
-    #path('', login_required(HomeView.as_view()), name='home'),
-    path('index/', login_required(views.BASE), name='BASE'),
-    path('', login_required(views.list_report), name='list_report'),
+    path('', login_required(views.BASE), name='BASE'),
+    #path('', login_required(views.list_report), name='list_report'),
     path('add_report/', login_required(views.add_report), name = 'add_report'),
-    path('edit_report/<int:pk>', login_required(UpdateReport.as_view()), name = 'update_report'),
+    path('update_report/<int:pk>', login_required(UpdateReport.as_view()), name = 'update_report'),
     path('delete_report/', login_required(DeleteReport.as_view()), name = 'delete_report'),
     path('chart/', login_required(views.chart_category), name='chart_category'),
     path('ajax/load-categories/', login_required(views.load_categories), name = 'ajax_load_categories'),

@@ -125,7 +125,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-LOGIN_REDIRECT_URL = reverse_lazy('list_report')
+LOGIN_REDIRECT_URL = reverse_lazy('BASE')
 
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
 
