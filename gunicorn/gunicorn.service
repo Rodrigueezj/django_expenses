@@ -1,0 +1,13 @@
+[Unit]
+Description=gunicorn daemon
+Requires=gunicorn.socket
+After=network.target
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/juan/Desktop/proyectos/django_expenses
+ExecStart=/home/ubuntu/env/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/juan/Desktop/proyectos/django_expenses/expenses/expenses.sock expenses.wsgi:application
+home
+       
+[Install]
+WantedBy=multi-user.target
