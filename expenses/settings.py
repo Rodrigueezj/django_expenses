@@ -12,16 +12,29 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 from django.urls import reverse_lazy
+from decouple import config
+from storages.backends.s3boto3 import S3Boto3Storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+SECRET_KEY_PROD = config('SECRET_KEY_PROD')
+
+ENGINE = config('ENGINE')
+NAME = config('NAME')
+USER = config('USER')
+PASSWORD = config('PASSWORD')
+HOST = config('HOST')
+PORT = config('PORT')
+
+S3_KEY_ID = config('S3_KEY_ID')
+S3_SECRET_KEY_ID = config('S3_SECRET_KEY_ID')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-8fe%)0)x1_rz)wgc8a$u6%l5_#otq43!+ml@jvx^34j$4_j#rz'
+SECRET_KEY = SECRET_KEY_PROD
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -139,3 +152,12 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR,'static'),)
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
+AWS_ACCESS_KEY_ID = S3_KEY_ID
+AWS_SECRET_ACCESS_KEY = S3_SECRET_KEY_ID
+AWS_STORAGE_BUCKET_NAME = 'expensesbucket'
+AWS_S3_SIGNATURE_NAME = 's3v4',
+AWS_S3_REGION_NAME = 'us-east-2'
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL =  None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
