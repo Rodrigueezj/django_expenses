@@ -3,7 +3,6 @@ os: linux
 files: 
   - source: /
     destination: /home/ubuntu/django_expenses
-file_exists_behavior: OVERWRITE
 permissions:
   - object: /home/ubuntu/django_expenses
     owner: ubuntu
