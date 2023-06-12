@@ -1,6 +1,6 @@
 #!/usr/bin/bash 
 
-sed -i 's/\[]/\["*"]/' /home/ubuntu/django_expenses/expenses/settings.py
+sed -i 's/\[]/\["18.216.10.251"]/' /home/ubuntu/django_expenses/expenses/settings.py
 
 python manage.py migrate 
 python manage.py makemigrations     
