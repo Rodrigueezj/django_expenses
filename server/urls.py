@@ -3,11 +3,12 @@ from django.contrib.auth.views import LoginView, logout_then_login
 from django.contrib.auth.decorators import login_required
 
 from . import views
-from .views import add_report, DeleteReport, DetailReport, list_report, UpdateReport
+from .views import add_report, DeleteReport, DetailReport, list_report, UpdateReport, registration
 
 #app_name = 'server'
 urlpatterns = [
     path('accounts/login/', LoginView.as_view(), name='login'),
+    path('accounts/registration/', views.registration, name='registration'),
     path('', login_required(views.BASE), name='BASE'),
     #path('', login_required(views.list_report), name='list_report'),
     path('add_report/', login_required(views.add_report), name = 'add_report'),

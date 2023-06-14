@@ -5,6 +5,12 @@ from .models import Report, Category
 from .forms import ReportForm
 import plotly.express as px
 from django.db.models import Sum
+from django.contrib.auth.forms import UserCreationForm
+
+def registration(request):
+    form = UserCreationForm()
+    context = {'form': form}
+    return render(request, 'registration/registration.html', context)
 
 def BASE(request):
     reports = Report.objects.all()
