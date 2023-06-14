@@ -7,7 +7,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Expenses dashboard</title>
+    <title>
+        {% block title %}
+            Expenses Dashboard
+        {% endblock %}
+    </title>
     <meta name="description" content="Ela Admin - HTML5 Admin Template">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -26,13 +30,9 @@
     <link href="https://cdn.jsdelivr.net/npm/chartist@0.11.0/dist/chartist.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/jqvmap@1.5.1/dist/jqvmap.min.css" rel="stylesheet">
 
-    <link href="https://cdn.jsdelivr.net/npm/weathericons@2.1.0/css/weather-icons.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.css" rel="stylesheet" />
 
    <style>
-    #weatherWidget .currentDesc {
-        color: #ffffff!important;
-    }
         .traffic-chart {
             min-height: 335px;
         }
@@ -78,11 +78,12 @@
                     </li>
                     <li class="menu-title">Your profile</li><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Reports</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Models</a>
                         <ul class="sub-menu children dropdown-menu">           
-                            <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Create</a></li>
-                            <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Edit</a></li>
-                            <li><i class="fa fa-fire"></i><a href="ui-modals.html">Delete</a></li>
+                            <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Reports</a></li>
+                            <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Accounts</a></li>
+                            <li><i class="fa fa-fire"></i><a href="ui-modals.html">Categories</a></li>
+                            <li><i class="fa fa-fire"></i><a href="ui-modals.html">Payment methods</a></li>
                         </ul>
                     </li>
                     <li class="menu-item-has-children dropdown">
@@ -193,6 +194,8 @@
                         </div>
                     </div>
 
+
+
                     <div class="user-area dropdown float-right">
                         <a href="#" class="dropdown-toggle active" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="user-avatar rounded-circle" src="{% static 'images/admin.jpg' %}" alt="User Avatar">
@@ -208,7 +211,6 @@
                             <a class="nav-link" href="{% url 'logout' %}"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
-
                 </div>
             </div>
         </header>
@@ -292,143 +294,22 @@
                     </div>
                 </div>
                 <!-- /Widgets -->
-                <!--  Traffic  -->
+                <!--  Grafico principal  -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="box-title">Traffic </h4>
+                                {% block content %}
+                                {% endblock %}
                             </div>
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <div class="card-body">
-                                        <!-- <canvas id="TrafficChart"></canvas>   -->
-                                        <div id="traffic-chart" class="traffic-chart"></div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4">
-                                    <div class="card-body">
-                                        <div class="progress-box progress-1">
-                                            <h4 class="por-title">Visits</h4>
-                                            <div class="por-txt">96,930 Users (40%)</div>
-                                            <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-1" role="progressbar" style="width: 40%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="progress-box progress-2">
-                                            <h4 class="por-title">Bounce Rate</h4>
-                                            <div class="por-txt">3,220 Users (24%)</div>
-                                            <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-2" role="progressbar" style="width: 24%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="progress-box progress-2">
-                                            <h4 class="por-title">Unique Visitors</h4>
-                                            <div class="por-txt">29,658 Users (60%)</div>
-                                            <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-3" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                        <div class="progress-box progress-2">
-                                            <h4 class="por-title">Targeted  Visitors</h4>
-                                            <div class="por-txt">99,658 Users (90%)</div>
-                                            <div class="progress mb-2" style="height: 5px;">
-                                                <div class="progress-bar bg-flat-color-4" role="progressbar" style="width: 90%;" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
-                                            </div>
-                                        </div>
-                                    </div> <!-- /.card-body -->
-                                </div>
-                            </div> <!-- /.row -->
-                            <div class="card-body"></div>
                         </div>
-                    </div><!-- /# column -->
+                    </div>
                 </div>
                 <!--  /Traffic -->
-                <div class="clearfix"></div>
-                <!-- Orders -->
-                <div class="orders">
-                    <div class="row">
-                        <div class="col-xl-8">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h4 class="box-title">Reports </h4>
-                                </div>
-                                <div class="card-body--">
-                                    <div class="table-stats order-table ov-h">
-                                        <table class="table ">
-                                            <thead>
-                                                <tr>
-                                                    <th>ID</th>
-                                                    <th>DATE</th>
-                                                    <th>ACCOUNT</th>
-                                                    <th>CATEGORY</th>
-                                                    <th>PRICE</th>
-                                                    <th>PAYMENT METHOD</th>
-                                                    <th>DESCRIPTION</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                {% for report in reports %}
-                                                <tr>
-                                                    <td><a href="{% url 'update_report' report.id %}">{{ report.id }}</a></td>
-                                                    <td>{{ report.date }}</td>
-                                                    <td>{{ report.account }}</td>
-                                                    <td>{{ report.category }}</td>
-                                                    <td>{{ report.price }}</td>
-                                                    <td>{{ report.payment }}</td>
-                                                    <td>{{ report.description }}</td>
-                                                </tr>   
-                                                {% endfor %}
-                                                </tbody>
-                                        </table>
-                                    </div> <!-- /.table-stats -->
-                                </div>
-                            </div> <!-- /.card -->
-                        </div>  <!-- /.col-lg-8 -->
-
-                        <div class="col-xl-4">
-                            <div class="row">
-                                <div class="col-lg-6 col-xl-12">
-                                    <div class="card br-0">
-                                        <div class="card-body">
-                                            <div class="chart-container ov-h">
-                                                <div id="flotPie1" class="float-chart"></div>
-                                            </div>
-                                        </div>
-                                    </div><!-- /.card -->
-                                </div>
-
-                                <div class="col-lg-6 col-xl-12">
-                                    <div class="card bg-flat-color-3  ">
-                                        <div class="card-body">
-                                            <h4 class="card-title m-0  white-color ">August 2018</h4>
-                                        </div>
-                                         <div class="card-body">
-                                             <div id="flotLine5" class="flot-line"></div>
-                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> <!-- /.col-md-4 -->
-                    </div>
-                </div>
-                <!-- /.orders -->
-            <!-- Calender Chart Weather  -->
-                <div class="row">
-          
-
-                    <div class="col-lg-4 col-md-6">
-                        <div class="card ov-h">
-                            <div class="card-body bg-flat-color-2">
-                                <div id="flotBarChart" class="float-chart ml-4 mr-4"></div>
-                            </div>
-                            <div id="cellPaiChart" class="float-chart"></div>
-                        </div><!-- /.card -->
-                    </div>
-
-                </div>
-                <!-- /Calender Chart Weather -->
             </div>
+                <!-- /#add-category -->
+            
+            <!-- .animated -->
         </div>
         <!-- /.content -->
         <div class="clearfix"></div>
@@ -466,9 +347,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery.flot@0.8.3/jquery.flot.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flot-pie@1.0.0/src/jquery.flot.pie.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js"></script>
-
-    <script src="https://cdn.jsdelivr.net/npm/simpleweather@3.1.0/jquery.simpleWeather.min.js"></script>
-    <script src="{% static 'assets/js/init/weather-init.js' %}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.9.0/dist/fullcalendar.min.js"></script>
