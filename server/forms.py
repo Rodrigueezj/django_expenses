@@ -31,3 +31,14 @@ class ReportForm(forms.ModelForm):
 
         elif self.instance.pk:
             self.fields['category'].queryset = self.instance.account.category_set.order_by('name')
+
+class AccountForm(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = '__all__'
+
+        widgets = {
+            #'profile': forms.Select(attrs={'class': 'form-control'}),
+            'name': forms.DateInput(attrs={'class': 'form-control'}),
+            }
+      

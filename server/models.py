@@ -40,4 +40,4 @@ class Report(models.Model):
         return redirect('/')
     
     class Meta:
-        ordering = ('date',)
+        ordering = ('id',)

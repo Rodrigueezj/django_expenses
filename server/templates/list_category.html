@@ -1,0 +1,48 @@
+{% extends 'basee.html' %}
+
+{% block title %}
+Add Category
+{% endblock %}
+
+{% block content %}
+
+
+<div class="orders">
+    <div class="row">
+        <div class="col-xl-9">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="box-title">Categories  <button type="button" class="btn btn-success">+</button> </h4>
+                </div>
+                <div class="card-body--">
+                    <div class="table-stats order-table ov-h">
+                        <table class="table ">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>NAME</th>
+                                    <th>ACCOUNT</th>
+                                    <th>OPTIONS</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for category in categories %}
+                                <tr>
+                                    <td>{{ category.id }}</td>
+                                    <td>{{ category.name }}</td>
+                                    <td>{{ category.account }}</td>
+                                    <td><button type="button" class="btn btn-info">Update</button></td>
+                                    <td><button type="button" class="btn btn-danger">Delete</button></td>
+                                </tr>   
+                                {% endfor %}
+                                </tbody>
+                        </table>
+                    </div> <!-- /.table-stats -->
+                </div>
+            </div> <!-- /.card -->
+    </div>
+</div>
+<!-- /.orders -->
+
+{% endblock %}

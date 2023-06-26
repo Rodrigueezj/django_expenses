@@ -1,18 +1,18 @@
 {% extends 'basee.html' %}
 
 {% block title %}
-Add report
+Add Account
 {% endblock %}
 
 {% block content %}
 
-<h1>Add Report</h1>
+<h1>Add Account</h1>
 <br/>
 <div>
-    <form method="post" id="reportform" data-categories-url="{% url 'ajax_load_categories' %}">
+    <form method="post" id="accountform" data-categories-url="{% url 'ajax_load_categories' %}">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn btn-secondary">Update</button>
+        <button class="btn btn-secondary">Add</button>
     </form>
     
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> 

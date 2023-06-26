@@ -74,32 +74,15 @@
             <div id="main-menu" class="main-menu collapse navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li class="active">
-                        <a href="index.html"><i class="menu-icon fa fa-laptop"></i>olah </a>
+                        <a href="{% url 'BASE' %}"><i class="menu-icon fa fa-laptop"></i>Dashboard </a>
                     </li>
                     <li class="menu-title">Your profile</li><!-- /.menu-title -->
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-cogs"></i>Models</a>
                         <ul class="sub-menu children dropdown-menu">           
-                            <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Reports</a></li>
-                            <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Accounts</a></li>
-                            <li><i class="fa fa-fire"></i><a href="ui-modals.html">Categories</a></li>
-                            <li><i class="fa fa-fire"></i><a href="ui-modals.html">Payment methods</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-table"></i>Accounts</a>
-                        <ul class="sub-menu children dropdown-menu">           
-                            <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Create</a></li>
-                            <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Edit</a></li>
-                            <li><i class="fa fa-fire"></i><a href="ui-modals.html">Delete</a></li>
-                        </ul>
-                    </li>
-                    <li class="menu-item-has-children dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-th"></i>Categories</a>
-                        <ul class="sub-menu children dropdown-menu">           
-                            <li><i class="fa fa-id-card-o"></i><a href="ui-cards.html">Create</a></li>
-                            <li><i class="fa fa-spinner"></i><a href="ui-progressbar.html">Edit</a></li>
-                            <li><i class="fa fa-fire"></i><a href="ui-modals.html">Delete</a></li>
+                            <li><i class="fa fa-id-card-o"></i><a href="{% url 'list_report' %}">Reports</a></li>
+                            <li><i class="fa fa-spinner"></i><a href="{% url 'list_account' %}">Accounts</a></li>
+                            <li><i class="fa fa-fire"></i><a href="{% url 'list_category' %}">Categories</a></li>
                         </ul>
                     </li>
                 </ul>

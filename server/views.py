@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views.generic import ListView, DeleteView, DetailView, UpdateView
-from .models import Report, Category
+from django.views.generic import ListView, DeleteView, UpdateView
+from .models import Report, Category, Account
 from .forms import ReportForm
 import plotly.express as px
 from django.db.models import Sum
@@ -16,21 +16,19 @@ def BASE(request):
     reports = Report.objects.all()
     return render(request, 'index.html', {'reports': reports})
 
+
 def list_report(request):
     reports = Report.objects.all()
     return render(request, 'list.html', {'reports': reports})
 
-def edit_report(request, id):
-    report = Report.objects.get(id=id)
-    
-    if request.method == 'GET':
-        report_form = ReportForm(instance = report)
+def list_account(request):
+    accounts = Account.objects.all()
+    return render(request, 'list_account.html', {'accounts': accounts})
 
-    else:
-        report_form = ReportForm(request.POST, instance = report)
-        if report_form.is_valid():
-            report_form.save()
-        redirect('list_report')
+def list_category(request):
+    categories = Category.objects.all()
+    return render(request, 'list_category.html', {'categories': categories})
+
 
 class UpdateReport(UpdateView):
     model = Report
@@ -38,13 +36,31 @@ class UpdateReport(UpdateView):
     form_class = ReportForm
     success_url = reverse_lazy('list_report')
 
+class UpdateAccount(UpdateView):
+    model = Report
+    template_name = 'add_account.html'
+    form_class = ReportForm
+    success_url = reverse_lazy('list_account')
+
+class UpdateCategory(UpdateView):
+    model = Category
+    template_name = 'add_category.html'
+    form_class = ReportForm
+    success_url = reverse_lazy('list_account')
+
+
 class DeleteReport(DeleteView):
     model = Report
-    template_name = 'delete_report.html'
+    success_url = reverse_lazy('list_report')
 
-class DetailReport(DetailView):
-    model = Report
-    template_name = 'detail.html'
+class DeleteAccount(DeleteView):
+    model = Account
+    success_url = reverse_lazy('list_account')
+
+class DeleteCategory(DeleteView):
+    model = Category
+    success_url = reverse_lazy('list_category')
+
 
 def add_report(request):
     form = ReportForm()

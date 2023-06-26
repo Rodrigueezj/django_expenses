@@ -1,44 +1,56 @@
-{% extends 'base.html' %}
+{% extends 'basee.html' %}
 
 {% block title %}
-Reports
+Add report
 {% endblock %}
 
 {% block content %}
-    {% if reports %}
 
-    <h1>Hi {{user.username}}, here are your reports</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Date</th>
-                <th>Account</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Payment method</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for report in reports %}
-            <tr>
-                <a href="{% url 'update_report' report.id %}">
-                    <th>{{ report.id }}</th>
-                    <th>{{ report.date }}</th>
-                </a>
-                <th>{{ report.account }}</th>
-                <th>{{ report.category }}</th>
-                <th>{{ report.price }}</th>
-                <th>{{ report.payment }}</th>
-                <th>{{ report.description }}</th>
-            </tr>   
-            {% endfor %}
-            </tbody>
-    </table>
-    {% else %}
-        <h1>There are no reports</h1>
-    {% endif %}
-    <a href="{% url 'logout' %}" class="btn btn-secondary" >Log out</a>
-    
+
+<div class="orders">
+    <div class="row">
+        <div class="col-xl-9">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="box-title">Reports <a href="{% url 'add_report' %}"><button type="button" class="btn btn-success">+</button></a></h4>
+                </div>
+                <div class="card-body--">
+                    <div class="table-stats order-table ov-h">
+                        <table class="table ">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>DATE</th>
+                                    <th>ACCOUNT</th>
+                                    <th>CATEGORY</th>
+                                    <th>PRICE</th>
+                                    <th>PAYMENT METHOD</th>
+                                    <th>DESCRIPTION</th>
+                                    <th>OPTIONS</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for report in reports %}
+                                <tr>
+                                    <td>{{ report.id }}</td>
+                                    <td>{{ report.date }}</td>
+                                    <td>{{ report.account }}</td>
+                                    <td>{{ report.category }}</td>
+                                    <td>{{ report.price }}</td>
+                                    <td>{{ report.payment }}</td>
+                                    <td>{{ report.description }}</td>
+                                    <td><a href="{% url 'update_report' report.id %}"><button type="button" class="btn btn-info">Update</button></a></td>
+                                    <td><a href="{% url 'delete_report' report.id %}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+                                </tr>   
+                                {% endfor %}
+                                </tbody>
+                        </table>
+                    </div> <!-- /.table-stats -->
+                </div>
+            </div> <!-- /.card -->
+    </div>
+</div>
+<!-- /.orders -->
+
 {% endblock %}
